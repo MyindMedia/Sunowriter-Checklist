@@ -94,8 +94,11 @@ def render_lesson(lesson):
         content_attr = json.dumps(cb["content"])
         copy_blocks_html += f'''
       <div class="copy-block">
-        <h3>{html.escape(cb["label"])}</h3>
-        <div class="copy-wrap">{content_escaped}<button class="copy-btn" data-copy='{html.escape(content_attr, quote=True)}'>Copy</button></div>
+        <div class="copy-block-head">
+          <h3>{html.escape(cb["label"])}</h3>
+          <button class="copy-btn" data-copy='{html.escape(content_attr, quote=True)}'>Copy</button>
+        </div>
+        <pre class="code-block"><code>{content_escaped}</code></pre>
       </div>'''
 
     resources_html = ""

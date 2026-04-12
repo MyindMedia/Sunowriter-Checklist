@@ -244,30 +244,35 @@ header.site-header {
 /* Copy blocks */
 .copy-block {
   margin: 24px 0;
-}
-.copy-block .copy-wrap {
-  position: relative;
-  background: var(--dark);
   border: 1px solid var(--dark-3);
-  padding: 16px 20px;
-  padding-right: 100px;
-  font-family: 'SF Mono', Monaco, Consolas, monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--white);
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  border-left: 3px solid var(--gold);
+  background: var(--dark);
+  overflow: hidden;
+}
+.copy-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #161616;
+  border-bottom: 1px solid var(--dark-3);
+}
+.copy-block-head h3 {
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 0;
 }
 .copy-block .copy-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
   background: var(--gold);
   color: var(--dark);
   border: 0;
-  padding: 8px 16px;
+  padding: 6px 14px;
   font-weight: 900;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 1px;
   cursor: pointer;
   font-family: inherit;
@@ -276,6 +281,25 @@ header.site-header {
 }
 .copy-block .copy-btn:hover { background: var(--orange); }
 .copy-block .copy-btn.copied { background: var(--green); color: var(--dark); }
+
+.code-block {
+  margin: 0;
+  padding: 18px 20px;
+  background: var(--dark);
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--white);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+.code-block code {
+  font-family: inherit;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
 
 /* Resources */
 .resources {
@@ -314,6 +338,5 @@ footer.site-footer {
   .lesson-header .num { min-width: 60px; font-size: 12px; }
   .lesson-header h2 { font-size: 15px; }
   .progress { display: none; }
-  .copy-block .copy-wrap { padding-right: 16px; }
-  .copy-block .copy-btn { position: static; display: block; margin-top: 12px; width: 100%; }
+  .code-block { font-size: 12px; padding: 14px; }
 }
