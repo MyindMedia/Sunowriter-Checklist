@@ -1,0 +1,269 @@
+"""
+Build the GHL Build Checklist site from CHECKLIST.md.
+
+Parses ../CHECKLIST.md, extracts each lesson's title, length, build subtasks,
+copy blocks, and resources, then renders an interactive single-page site
+into ./index.html.
+
+Run:
+    python3 build_checklist.py
+"""
+
+from pathlib import Path
+import re
+import html
+import json
+
+ROOT = Path(__file__).parent
+SOURCE = ROOT.parent / "CHECKLIST.md"
+OUT = ROOT / "index.html"
+
+
+def parse_checklist(md):
+    """Return list of lesson dicts."""
+    lessons = []
+    # Split by lesson headers
+    parts = re.split(r"\n## LESSON ", md)
+    for part in parts[1:]:  # skip preamble
+        # Skip "Final Pre-Launch" and others — only lesson sections
+        if not re.match(r"^\d+", part):
+            continue
+
+        first_line, rest = part.split("\n", 1)
+        m = re.match(r"^(\d+)\s*—\s*(.+?)\s*$", first_line)
+        if not m:
+            continue
+        num = m.group(1)
+        title = m.group(2).strip()
+
+        # Length
+        length_m = re.search(r"\*\*Length:\*\*\s*(.+)", rest)
+        length = length_m.group(1).strip() if length_m else ""
+
+        # Build subtasks (- [ ] items under "GHL build:")
+        subtasks = []
+        build_block = re.search(r"GHL build:\n((?:- \[ \].+\n)+)", rest)
+        if build_block:
+            for line in build_block.group(1).splitlines():
+                tm = re.match(r"- \[ \] (.+)", line)
+                if tm:
+                    subtasks.append(tm.group(1).strip())
+
+        # Copy blocks: **>>> COPY — Label:**\n```\n...\n```
+        copy_blocks = []
+        for cm in re.finditer(
+            r"\*\*>>> COPY\s*—\s*(.+?):\*\*\n```\n(.*?)\n```",
+            rest,
+            re.DOTALL,
+        ):
+            label = cm.group(1).strip()
+            content = cm.group(2).rstrip()
+            copy_blocks.append({"label": label, "content": content})
+
+        # Resources
+        resources = []
+        res_block = re.search(
+            r"\*\*Resources to attach:\*\*\n((?:- .+\n?)+)", rest
+        )
+        if res_block:
+            for line in res_block.group(1).splitlines():
+                rm = re.match(r"- `?([^`\n]+?)`?\s*$", line)
+                if rm and "(none)" not in rm.group(1).lower() and "to be created" not in rm.group(1).lower():
+                    resources.append(rm.group(1).strip())
+
+        lessons.append({
+            "num": num,
+            "title": title,
+            "length": length,
+            "subtasks": subtasks,
+            "copy_blocks": copy_blocks,
+            "resources": resources,
+        })
+    return lessons
+
+
+def render_lesson(lesson):
+    subtasks_html = "\n".join(
+        f'        <li><input type="checkbox" data-task="L{lesson["num"]}-{i}"><label>{html.escape(t)}</label></li>'
+        for i, t in enumerate(lesson["subtasks"])
+    )
+
+    copy_blocks_html = ""
+    for i, cb in enumerate(lesson["copy_blocks"]):
+        content_escaped = html.escape(cb["content"])
+        content_attr = json.dumps(cb["content"])
+        copy_blocks_html += f'''
+      <div class="copy-block">
+        <h3>{html.escape(cb["label"])}</h3>
+        <div class="copy-wrap">{content_escaped}<button class="copy-btn" data-copy='{html.escape(content_attr, quote=True)}'>Copy</button></div>
+      </div>'''
+
+    resources_html = ""
+    if lesson["resources"]:
+        items = "\n".join(
+            f'          <li><a href="resources/pdfs/{html.escape(r)}" target="_blank">{html.escape(r)}</a></li>'
+            for r in lesson["resources"]
+        )
+        resources_html = f'''
+      <div class="resources">
+        <h3>Resources to Attach</h3>
+        <ul>
+{items}
+        </ul>
+      </div>'''
+
+    total = len(lesson["subtasks"])
+    return f'''
+  <article class="lesson" data-lesson="L{lesson["num"]}" data-total="{total}">
+    <div class="lesson-header" onclick="toggleLesson(this)">
+      <div class="left">
+        <span class="num">LESSON {lesson["num"]}</span>
+        <h2>{html.escape(lesson["title"])}</h2>
+      </div>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <span class="duration">{html.escape(lesson["length"])}</span>
+        <span class="toggle">▼</span>
+      </div>
+    </div>
+    <div class="lesson-body">
+      <div class="subtasks">
+        <h3>GHL Build Steps</h3>
+        <ul>
+{subtasks_html}
+        </ul>
+      </div>
+      {copy_blocks_html}
+      {resources_html}
+    </div>
+  </article>'''
+
+
+HTML_TEMPLATE = """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suno Writer — GHL Build Checklist</title>
+  <link rel="stylesheet" href="assets/css/brand.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container row">
+      <div class="logo">SUNO WRITER<small>GHL BUILD CHECKLIST</small></div>
+      <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="progress-text" id="progressText">0 / 0</div>
+      <button class="reset" onclick="resetAll()">Reset</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="label">Module 01</div>
+      <h1>Build Module 01 in GHL</h1>
+      <p>Single source of truth for building Suno Writer Module 01 inside the Myind Sound Music Club community. Open a lesson, copy the blocks straight into the GHL lesson editor, attach the resources, check it off, move to the next.</p>
+    </section>
+
+    <div class="howto">
+      <h3>How to use this</h3>
+      <ol>
+        <li>Open GHL → Memberships → Myind Sound Music Club → Suno Writer module</li>
+        <li>For each lesson below: click to expand, click each Copy button to grab the title / description / body</li>
+        <li>Paste into the matching GHL field, upload the video, attach the listed resources</li>
+        <li>Check off each step as you complete it (your progress saves automatically)</li>
+        <li>When all 15 lessons are checked off, publish the module</li>
+      </ol>
+    </div>
+
+    {lessons}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Myind Sound Music Club / Suno Writer v2.0 / Lawrence "ThaMyind" Berment</div>
+  </footer>
+
+  <script>
+    // Persistent checkbox state via localStorage
+    const STORAGE_KEY = 'suno-writer-checklist-v1';
+    const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{{}}');
+
+    function save() {{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+    }}
+
+    function updateProgress() {{
+      const all = document.querySelectorAll('.subtasks input[type="checkbox"]');
+      const done = Array.from(all).filter(x => x.checked).length;
+      const total = all.length;
+      document.getElementById('progressBar').style.width = total ? (done / total * 100) + '%' : '0%';
+      document.getElementById('progressText').textContent = done + ' / ' + total;
+
+      // Mark lesson cards as done if all subtasks complete
+      document.querySelectorAll('.lesson').forEach(lesson => {{
+        const boxes = lesson.querySelectorAll('input[type="checkbox"]');
+        const allChecked = boxes.length > 0 && Array.from(boxes).every(b => b.checked);
+        lesson.classList.toggle('done', allChecked);
+      }});
+    }}
+
+    function toggleLesson(el) {{
+      el.parentElement.classList.toggle('open');
+    }}
+
+    function resetAll() {{
+      if (!confirm('Reset all checklist progress? This cannot be undone.')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }}
+
+    // Wire up checkboxes
+    document.querySelectorAll('.subtasks input[type="checkbox"]').forEach(box => {{
+      const key = box.dataset.task;
+      if (state[key]) box.checked = true;
+      box.addEventListener('change', () => {{
+        state[key] = box.checked;
+        box.parentElement.classList.toggle('done', box.checked);
+        save();
+      }});
+      if (box.checked) box.parentElement.classList.add('done');
+    }});
+
+    // Wire up copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => {{
+      btn.addEventListener('click', async (e) => {{
+        e.stopPropagation();
+        const text = btn.dataset.copy;
+        try {{
+          await navigator.clipboard.writeText(text);
+          const original = btn.textContent;
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {{
+            btn.textContent = original;
+            btn.classList.remove('copied');
+          }}, 1500);
+        }} catch (err) {{
+          alert('Copy failed. Select the text manually.');
+        }}
+      }});
+    }});
+
+    updateProgress();
+  </script>
+</body>
+</html>
+"""
+
+
+def main():
+    md = SOURCE.read_text()
+    lessons = parse_checklist(md)
+    print(f"Parsed {len(lessons)} lessons")
+    lessons_html = "\n".join(render_lesson(l) for l in lessons)
+    out = HTML_TEMPLATE.format(lessons=lessons_html)
+    OUT.write_text(out)
+    print(f"Built {OUT}")
+
+
+if __name__ == "__main__":
+    main()
