@@ -253,7 +253,9 @@ HTML_TEMPLATE = """<!doctype html>
     document.querySelectorAll('.copy-btn').forEach(btn => {{
       btn.addEventListener('click', async (e) => {{
         e.stopPropagation();
-        const text = btn.dataset.copy;
+        let text;
+        try {{ text = JSON.parse(btn.dataset.copy); }}
+        catch (err) {{ text = btn.dataset.copy; }}
         try {{
           await navigator.clipboard.writeText(text);
           const original = btn.textContent;
