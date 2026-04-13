@@ -224,11 +224,11 @@ header.site-header {
 }
 
 .lesson-body {
-  display: none;
+  display: none !important;
   padding: 0 24px 24px;
   border-top: 1px solid var(--dark-3);
 }
-.lesson.open .lesson-body { display: block; }
+.lesson.open .lesson-body { display: block !important; }
 
 /* GHL customization card */
 .lesson.ghl-custom { border-left-color: var(--orange); }

@@ -130,7 +130,7 @@ def render_lesson(lesson):
     thumb_path = f"assets/thumbs/lesson-{lesson['num'].zfill(2)}.png"
     return f'''
   <article class="lesson" data-lesson="L{lesson["num"]}" data-total="{total}">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON {lesson["num"]}</span>
         <h2>{html.escape(lesson["title"])}</h2>
@@ -178,6 +178,8 @@ HTML_TEMPLATE = """<!doctype html>
       <div class="logo">SUNO WRITER<small>GHL BUILD CHECKLIST</small></div>
       <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
       <div class="progress-text" id="progressText">0 / 0</div>
+      <button class="reset" id="expandAllBtn">Expand All</button>
+      <button class="reset" id="collapseAllBtn">Collapse All</button>
       <button class="reset" onclick="resetAll()">Reset</button>
     </div>
   </header>
@@ -253,6 +255,29 @@ HTML_TEMPLATE = """<!doctype html>
     function toggleLesson(el) {{
       el.parentElement.classList.toggle('open');
     }}
+
+    // Force every lesson closed on load (defensive against stale state)
+    document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+
+    // Attach click handlers to each lesson header (more robust than inline onclick)
+    document.querySelectorAll('.lesson-header').forEach(header => {{
+      header.addEventListener('click', (e) => {{
+        // Don't toggle if user clicked an interactive element inside the header
+        if (e.target.closest('button, a, input')) return;
+        header.parentElement.classList.toggle('open');
+      }});
+    }});
+
+    // Expand / Collapse All
+    const expandBtn = document.getElementById('expandAllBtn');
+    const collapseBtn = document.getElementById('collapseAllBtn');
+    if (expandBtn) expandBtn.addEventListener('click', () => {{
+      document.querySelectorAll('.lesson').forEach(l => l.classList.add('open'));
+    }});
+    if (collapseBtn) collapseBtn.addEventListener('click', () => {{
+      document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+      window.scrollTo({{ top: 0, behavior: 'smooth' }});
+    }});
 
     function resetAll() {{
       if (!confirm('Reset all checklist progress AND saved resource URLs? This cannot be undone.')) return;
@@ -363,7 +388,7 @@ def render_ghl_customization():
 
     return f'''
   <article class="lesson ghl-custom" data-lesson="GHL-CUSTOM">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">GHL</span>
         <h2>Course Customization (Custom CSS + JS)</h2>

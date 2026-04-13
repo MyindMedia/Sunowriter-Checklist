@@ -12,6 +12,8 @@
       <div class="logo">SUNO WRITER<small>GHL BUILD CHECKLIST</small></div>
       <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
       <div class="progress-text" id="progressText">0 / 0</div>
+      <button class="reset" id="expandAllBtn">Expand All</button>
+      <button class="reset" id="collapseAllBtn">Collapse All</button>
       <button class="reset" onclick="resetAll()">Reset</button>
     </div>
   </header>
@@ -36,7 +38,7 @@
 
     
   <article class="lesson ghl-custom" data-lesson="GHL-CUSTOM">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">GHL</span>
         <h2>Course Customization (Custom CSS + JS)</h2>
@@ -330,7 +332,7 @@ img.avatar, .avatar img { border-radius: 50% !important; }
     </div>
   </article>
   <article class="lesson" data-lesson="L01" data-total="9">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 01</span>
         <h2>Welcome to Suno Writer</h2>
@@ -421,7 +423,7 @@ WHAT TO DO
   </article>
 
   <article class="lesson" data-lesson="L02" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 02</span>
         <h2>The Interface Tour</h2>
@@ -514,7 +516,7 @@ WHAT TO DO
   </article>
 
   <article class="lesson" data-lesson="L03" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 03</span>
         <h2>Your First Login &amp; Account Setup</h2>
@@ -592,7 +594,7 @@ WHAT TO DO
   </article>
 
   <article class="lesson" data-lesson="L04" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 04</span>
         <h2>Songwriting Mode</h2>
@@ -705,7 +707,7 @@ Generate one full song and post it in the community with hashtag #sunowriter-les
   </article>
 
   <article class="lesson" data-lesson="L05" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 05</span>
         <h2>Instrumental / Remix Mode</h2>
@@ -787,7 +789,7 @@ Build one beat, swap one H-Pad, post both versions in the community.</code></pre
   </article>
 
   <article class="lesson" data-lesson="L06" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 06</span>
         <h2>Sample Maker Mode</h2>
@@ -869,7 +871,7 @@ Generate one Sample Maker loop, chop it in your DAW, post the chop in the commun
   </article>
 
   <article class="lesson" data-lesson="L07" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 07</span>
         <h2>Sample Analysis Mode</h2>
@@ -950,7 +952,7 @@ Analyze a song you wish you had produced. Tell us in the community what surprise
   </article>
 
   <article class="lesson" data-lesson="L08" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 08</span>
         <h2>The Arrange View</h2>
@@ -1047,7 +1049,7 @@ WHAT TO DO
   </article>
 
   <article class="lesson" data-lesson="L09" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 09</span>
         <h2>The Mood Board View</h2>
@@ -1124,7 +1126,7 @@ WHAT TO DO
   </article>
 
   <article class="lesson" data-lesson="L10" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 10</span>
         <h2>DNA Profiles</h2>
@@ -1207,7 +1209,7 @@ Save three DNA profiles. Post one blend in the community.</code></pre>
   </article>
 
   <article class="lesson" data-lesson="L11" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 11</span>
         <h2>Saved Works, Templates &amp; Collaboration</h2>
@@ -1288,7 +1290,7 @@ WHAT TO DO
   </article>
 
   <article class="lesson" data-lesson="L12" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 12</span>
         <h2>Release Prep &amp; Clean Lyrics</h2>
@@ -1366,7 +1368,7 @@ WHAT TO DO
   </article>
 
   <article class="lesson" data-lesson="L13" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 13</span>
         <h2>End-to-End Workflow (Capstone)</h2>
@@ -1463,7 +1465,7 @@ Ship one full track using this exact flow. Post in the community with #sunowrite
   </article>
 
   <article class="lesson" data-lesson="L14" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 14</span>
         <h2>Tips, Shortcuts &amp; Troubleshooting</h2>
@@ -1544,7 +1546,7 @@ If you have been stuck for more than ten minutes, post in the community help cha
   </article>
 
   <article class="lesson" data-lesson="L15" data-total="8">
-    <div class="lesson-header" onclick="toggleLesson(this)">
+    <div class="lesson-header">
       <div class="left">
         <span class="num">LESSON 15</span>
         <h2>Module Recap &amp; Community Challenge</h2>
@@ -1692,6 +1694,29 @@ Module 2 is coming. Watch the community channel for the announcement.</code></pr
     function toggleLesson(el) {
       el.parentElement.classList.toggle('open');
     }
+
+    // Force every lesson closed on load (defensive against stale state)
+    document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+
+    // Attach click handlers to each lesson header (more robust than inline onclick)
+    document.querySelectorAll('.lesson-header').forEach(header => {
+      header.addEventListener('click', (e) => {
+        // Don't toggle if user clicked an interactive element inside the header
+        if (e.target.closest('button, a, input')) return;
+        header.parentElement.classList.toggle('open');
+      });
+    });
+
+    // Expand / Collapse All
+    const expandBtn = document.getElementById('expandAllBtn');
+    const collapseBtn = document.getElementById('collapseAllBtn');
+    if (expandBtn) expandBtn.addEventListener('click', () => {
+      document.querySelectorAll('.lesson').forEach(l => l.classList.add('open'));
+    });
+    if (collapseBtn) collapseBtn.addEventListener('click', () => {
+      document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     function resetAll() {
       if (!confirm('Reset all checklist progress AND saved resource URLs? This cannot be undone.')) return;
