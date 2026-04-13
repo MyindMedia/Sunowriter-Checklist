@@ -371,56 +371,11 @@ HTML_TEMPLATE = """<!doctype html>
 """
 
 
-def render_ghl_customization():
-    css_path = ROOT.parent / "ghl-customization" / "custom.css"
-    js_path = ROOT.parent / "ghl-customization" / "custom.js"
-    css_content = css_path.read_text() if css_path.exists() else ""
-    js_content = js_path.read_text() if js_path.exists() else ""
-
-    blocks = [
-        ("Custom CSS", css_content),
-        ("Custom JavaScript", js_content),
-    ]
-    blocks_html = ""
-    for label, content in blocks:
-        content_attr = json.dumps(content)
-        content_escaped = html.escape(content)
-        blocks_html += f'''
-      <div class="copy-block">
-        <div class="copy-block-head">
-          <h3>{html.escape(label)}</h3>
-          <button class="copy-btn" data-copy='{html.escape(content_attr, quote=True)}'>Copy</button>
-        </div>
-        <pre class="code-block"><code>{content_escaped}</code></pre>
-      </div>'''
-
-    return f'''
-  <article class="lesson ghl-custom" data-lesson="GHL-CUSTOM">
-    <div class="lesson-header">
-      <div class="left">
-        <span class="num">GHL</span>
-        <h2>Course Customization (Custom CSS + JS)</h2>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <span class="duration">One-time setup</span>
-        <span class="toggle">▼</span>
-      </div>
-    </div>
-    <div class="lesson-body" style="display:none;">
-      <div class="ghl-custom-howto">
-        <p>Open GHL → Memberships → Suno Writer Neural Engine → <strong>Details → Advanced</strong>. Paste the CSS into <strong>Custom CSS</strong> and the JS into <strong>Custom Javascript</strong>, then Save.</p>
-      </div>
-      {blocks_html}
-    </div>
-  </article>'''
-
-
 def main():
     md = SOURCE.read_text()
     lessons = parse_checklist(md)
     print(f"Parsed {len(lessons)} lessons")
-    ghl_html = render_ghl_customization()
-    lessons_html = ghl_html + "\n".join(render_lesson(l) for l in lessons)
+    lessons_html = "\n".join(render_lesson(l) for l in lessons)
     out = HTML_TEMPLATE.format(lessons=lessons_html)
     OUT.write_text(out)
     print(f"Built {OUT}")
