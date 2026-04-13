@@ -305,20 +305,76 @@ header.site-header {
 .resources {
   margin: 24px 0 4px;
 }
+.resources h3 .hint {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  margin-left: 8px;
+}
 .resources ul { list-style: none; }
-.resources li {
+.resources li.resource-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 0;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: var(--dark);
+  border: 1px solid var(--dark-3);
+  border-left: 3px solid var(--orange);
   font-size: 14px;
+  flex-wrap: wrap;
 }
-.resources li::before {
-  content: '📎';
-  font-size: 14px;
+.resources .resource-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 220px;
+  flex: 0 0 auto;
 }
-.resources a { color: var(--gold); text-decoration: none; }
+.resources .paperclip { font-size: 14px; }
+.resources a { color: var(--gold); text-decoration: none; font-weight: 600; }
 .resources a:hover { color: var(--orange); text-decoration: underline; }
+.resources .resource-url {
+  display: flex;
+  flex: 1 1 320px;
+  gap: 8px;
+  align-items: center;
+}
+.resources .resource-url input[type="url"] {
+  flex: 1;
+  background: #161616;
+  border: 1px solid var(--dark-3);
+  color: var(--white);
+  padding: 8px 12px;
+  font-family: 'SF Mono', Monaco, Consolas, monospace;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.resources .resource-url input[type="url"]:focus {
+  border-color: var(--gold);
+}
+.resources .resource-url input[type="url"]::placeholder {
+  color: #555;
+}
+.resources .url-copy-btn {
+  background: var(--gold);
+  color: var(--dark);
+  border: 0;
+  padding: 8px 14px;
+  font-weight: 900;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: inherit;
+  text-transform: uppercase;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+.resources .url-copy-btn:hover { background: var(--orange); }
+.resources .url-copy-btn.copied { background: var(--green); color: var(--dark); }
 
 /* Footer */
 footer.site-footer {

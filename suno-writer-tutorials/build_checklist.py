@@ -104,12 +104,21 @@ def render_lesson(lesson):
     resources_html = ""
     if lesson["resources"]:
         items = "\n".join(
-            f'          <li><a href="resources/pdfs/{html.escape(r)}" target="_blank">{html.escape(r)}</a></li>'
-            for r in lesson["resources"]
+            f'''          <li class="resource-row">
+            <div class="resource-name">
+              <span class="paperclip">📎</span>
+              <a href="resources/pdfs/{html.escape(r)}" target="_blank">{html.escape(r)}</a>
+            </div>
+            <div class="resource-url">
+              <input type="url" placeholder="Paste GHL media URL after upload..." data-url="L{lesson["num"]}-R{i}" />
+              <button class="url-copy-btn" data-url-target="L{lesson["num"]}-R{i}">Copy</button>
+            </div>
+          </li>'''
+            for i, r in enumerate(lesson["resources"])
         )
         resources_html = f'''
       <div class="resources">
-        <h3>Resources to Attach</h3>
+        <h3>Resources to Attach <span class="hint">(upload PDF to GHL → paste URL → copy into lesson)</span></h3>
         <ul>
 {items}
         </ul>
@@ -185,9 +194,15 @@ HTML_TEMPLATE = """<!doctype html>
   </footer>
 
   <script>
-    // Persistent checkbox state via localStorage
+    // Persistent state via localStorage (checkboxes + resource URLs)
     const STORAGE_KEY = 'suno-writer-checklist-v1';
+    const URL_KEY = 'suno-writer-resource-urls-v1';
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{{}}');
+    const urls = JSON.parse(localStorage.getItem(URL_KEY) || '{{}}');
+
+    function saveUrls() {{
+      localStorage.setItem(URL_KEY, JSON.stringify(urls));
+    }}
 
     function save() {{
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -214,8 +229,9 @@ HTML_TEMPLATE = """<!doctype html>
     }}
 
     function resetAll() {{
-      if (!confirm('Reset all checklist progress? This cannot be undone.')) return;
+      if (!confirm('Reset all checklist progress AND saved resource URLs? This cannot be undone.')) return;
       localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(URL_KEY);
       location.reload();
     }}
 
@@ -238,6 +254,42 @@ HTML_TEMPLATE = """<!doctype html>
         const text = btn.dataset.copy;
         try {{
           await navigator.clipboard.writeText(text);
+          const original = btn.textContent;
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {{
+            btn.textContent = original;
+            btn.classList.remove('copied');
+          }}, 1500);
+        }} catch (err) {{
+          alert('Copy failed. Select the text manually.');
+        }}
+      }});
+    }});
+
+    // Wire up resource URL inputs
+    document.querySelectorAll('input[data-url]').forEach(input => {{
+      const key = input.dataset.url;
+      if (urls[key]) input.value = urls[key];
+      input.addEventListener('input', () => {{
+        urls[key] = input.value.trim();
+        if (!urls[key]) delete urls[key];
+        saveUrls();
+      }});
+    }});
+
+    // Wire up resource URL copy buttons
+    document.querySelectorAll('.url-copy-btn').forEach(btn => {{
+      btn.addEventListener('click', async (e) => {{
+        e.stopPropagation();
+        const key = btn.dataset.urlTarget;
+        const val = urls[key] || '';
+        if (!val) {{
+          alert('No URL saved yet. Upload the PDF to GHL, then paste the media URL into this field.');
+          return;
+        }}
+        try {{
+          await navigator.clipboard.writeText(val);
           const original = btn.textContent;
           btn.textContent = 'Copied!';
           btn.classList.add('copied');
