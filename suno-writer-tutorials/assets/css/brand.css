@@ -194,6 +194,47 @@ header.site-header {
 }
 .lesson.open .lesson-body { display: block; }
 
+/* Lesson thumbnail */
+.thumb-block { margin: 20px 0 8px; }
+.thumb-block h3 {
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.thumb-wrap {
+  position: relative;
+  border: 1px solid var(--dark-3);
+  border-left: 3px solid var(--gold);
+  background: var(--dark);
+  padding: 12px;
+  display: inline-block;
+  max-width: 100%;
+}
+.thumb-wrap img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 480px;
+}
+.thumb-download {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 8px 16px;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+.thumb-download:hover { background: var(--orange); }
+
 /* Build subtasks */
 .subtasks {
   margin: 20px 0;

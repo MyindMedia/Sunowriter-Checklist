@@ -127,6 +127,7 @@ def render_lesson(lesson):
       </div>'''
 
     total = len(lesson["subtasks"])
+    thumb_path = f"assets/thumbs/lesson-{lesson['num'].zfill(2)}.png"
     return f'''
   <article class="lesson" data-lesson="L{lesson["num"]}" data-total="{total}">
     <div class="lesson-header" onclick="toggleLesson(this)">
@@ -140,6 +141,13 @@ def render_lesson(lesson):
       </div>
     </div>
     <div class="lesson-body">
+      <div class="thumb-block">
+        <h3>Lesson Thumbnail</h3>
+        <div class="thumb-wrap">
+          <img src="{thumb_path}" alt="Lesson {lesson["num"]} thumbnail" loading="lazy" />
+          <a href="{thumb_path}" download class="thumb-download">Download PNG</a>
+        </div>
+      </div>
       <div class="subtasks">
         <h3>GHL Build Steps</h3>
         <ul>
