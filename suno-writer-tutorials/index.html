@@ -48,7 +48,7 @@
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="ghl-custom-howto">
         <p>Open GHL → Memberships → Suno Writer Neural Engine → <strong>Details → Advanced</strong>. Paste the CSS into <strong>Custom CSS</strong> and the JS into <strong>Custom Javascript</strong>, then Save.</p>
       </div>
@@ -56,198 +56,253 @@
       <div class="copy-block">
         <div class="copy-block-head">
           <h3>Custom CSS</h3>
-          <button class="copy-btn" data-copy='&quot;/* ============================================================\n   MYIND SOUND \u2014 GHL Course Custom CSS\n   Course: Suno Writer Neural Engine\n   Palette: #1A1A1A / #FDB913 / #FF8C00 / #FFFFFF\n   Paste into: Course \u2192 Details \u2192 Advanced \u2192 Custom CSS\n   ============================================================ */\n\n@import url(&#x27;https://rsms.me/inter/inter.css&#x27;);\n\n:root {\n  --ms-dark: #1A1A1A;\n  --ms-dark-2: #222222;\n  --ms-dark-3: #2a2a2a;\n  --ms-gold: #FDB913;\n  --ms-orange: #FF8C00;\n  --ms-white: #FFFFFF;\n  --ms-muted: #888888;\n}\n\n/* Base */\nbody, .hl_courses, .hl-courses, .course-content, .lesson-content,\n.client-portal, .client-portal-body {\n  background: var(--ms-dark) !important;\n  color: var(--ms-white) !important;\n  font-family: &#x27;Inter&#x27;, system-ui, -apple-system, sans-serif !important;\n  -webkit-font-smoothing: antialiased;\n}\n\n/* Headings */\nh1, h2, h3, h4, h5, h6,\n.course-title, .lesson-title, .category-title {\n  color: var(--ms-gold) !important;\n  font-family: &#x27;Inter&#x27;, system-ui, sans-serif !important;\n  font-weight: 900 !important;\n  letter-spacing: -0.01em;\n}\nh1, .course-title { font-size: 36px !important; line-height: 1.1 !important; }\nh2 { font-size: 26px !important; }\nh3 { font-size: 20px !important; }\n\n/* Body copy */\np, li, span, .lesson-description, .course-description {\n  color: var(--ms-white) !important;\n  line-height: 1.65 !important;\n}\n\n/* Links */\na, a:visited {\n  color: var(--ms-gold) !important;\n  text-decoration: none !important;\n  transition: color 0.15s ease;\n}\na:hover { color: var(--ms-orange) !important; }\n\n/* Sidebar / category list */\n.category-list, .course-sidebar, .lesson-sidebar,\n.hl-course-sidebar, .sidebar {\n  background: var(--ms-dark-2) !important;\n  border-right: 1px solid var(--ms-dark-3) !important;\n}\n.category-item, .lesson-item, .lesson-list-item {\n  background: transparent !important;\n  border-bottom: 1px solid var(--ms-dark-3) !important;\n  color: var(--ms-white) !important;\n}\n.category-item:hover, .lesson-item:hover, .lesson-list-item:hover {\n  background: var(--ms-dark-3) !important;\n  border-left: 3px solid var(--ms-gold) !important;\n}\n.lesson-item.active, .lesson-list-item.active,\n.category-item.active {\n  background: var(--ms-dark-3) !important;\n  border-left: 3px solid var(--ms-gold) !important;\n  color: var(--ms-gold) !important;\n}\n\n/* Cards / containers */\n.card, .lesson-card, .course-card, .module-card,\n.hl-card, .panel {\n  background: var(--ms-dark-2) !important;\n  border: 1px solid var(--ms-dark-3) !important;\n  border-left: 4px solid var(--ms-gold) !important;\n  border-radius: 0 !important;\n  color: var(--ms-white) !important;\n}\n\n/* Buttons */\nbutton, .btn, .btn-primary, .hl-btn, input[type=\&quot;submit\&quot;] {\n  background: var(--ms-gold) !important;\n  color: var(--ms-dark) !important;\n  border: 0 !important;\n  border-radius: 0 !important;\n  font-family: &#x27;Inter&#x27;, sans-serif !important;\n  font-weight: 900 !important;\n  letter-spacing: 1px !important;\n  text-transform: uppercase !important;\n  font-size: 12px !important;\n  padding: 12px 22px !important;\n  transition: background 0.15s ease !important;\n}\nbutton:hover, .btn:hover, .btn-primary:hover, .hl-btn:hover {\n  background: var(--ms-orange) !important;\n  color: var(--ms-dark) !important;\n}\n\n/* Secondary / outline buttons */\n.btn-secondary, .btn-outline {\n  background: transparent !important;\n  color: var(--ms-gold) !important;\n  border: 1px solid var(--ms-gold) !important;\n}\n.btn-secondary:hover, .btn-outline:hover {\n  background: var(--ms-gold) !important;\n  color: var(--ms-dark) !important;\n}\n\n/* Progress bars */\n.progress, .progress-bar-bg {\n  background: var(--ms-dark-3) !important;\n  border-radius: 0 !important;\n  height: 8px !important;\n}\n.progress-bar, .progress-fill {\n  background: var(--ms-gold) !important;\n  border-radius: 0 !important;\n}\n\n/* Video player wrapper */\n.video-container, .lesson-video, .vjs-default-skin {\n  background: var(--ms-dark) !important;\n  border: 1px solid var(--ms-dark-3) !important;\n}\n\n/* Comments section */\n.comments, .comment-section, .comment-item {\n  background: var(--ms-dark-2) !important;\n  border: 1px solid var(--ms-dark-3) !important;\n  color: var(--ms-white) !important;\n}\n\n/* Form fields */\ninput[type=\&quot;text\&quot;], input[type=\&quot;email\&quot;], input[type=\&quot;password\&quot;],\ntextarea, select {\n  background: var(--ms-dark) !important;\n  border: 1px solid var(--ms-dark-3) !important;\n  color: var(--ms-white) !important;\n  border-radius: 0 !important;\n  font-family: &#x27;Inter&#x27;, sans-serif !important;\n}\ninput:focus, textarea:focus, select:focus {\n  border-color: var(--ms-gold) !important;\n  outline: none !important;\n}\n\n/* Resource downloads */\n.resource-link, .download-link, .attachment {\n  background: var(--ms-dark) !important;\n  border-left: 3px solid var(--ms-orange) !important;\n  color: var(--ms-gold) !important;\n  padding: 10px 14px !important;\n  display: block !important;\n  margin: 6px 0 !important;\n}\n.resource-link:hover, .download-link:hover {\n  background: var(--ms-dark-3) !important;\n  color: var(--ms-orange) !important;\n}\n\n/* Top nav inside the course view */\n.course-header, .lesson-header, .navbar, .top-bar {\n  background: var(--ms-dark) !important;\n  border-bottom: 1px solid var(--ms-dark-3) !important;\n  color: var(--ms-white) !important;\n}\n\n/* Remove rounded corners everywhere \u2014 brand is sharp */\n* { border-radius: 0 !important; }\nimg.avatar, .avatar img { border-radius: 50% !important; }\n\n/* Mobile */\n@media (max-width: 720px) {\n  h1, .course-title { font-size: 26px !important; }\n  h2 { font-size: 20px !important; }\n}\n&quot;'>Copy</button>
+          <button class="copy-btn" data-copy='&quot;/* ============================================================\n   MYIND SOUND \u2014 GHL Course Custom CSS (v2)\n   Course: Suno Writer Neural Engine\n   Palette: #1A1A1A / #FDB913 / #FF8C00 / #FFFFFF\n   Paste into: Course \u2192 Details \u2192 Advanced \u2192 Custom CSS\n   ============================================================\n   v2 notes:\n   - Dropped @import (GHL strips it). Inter is loaded via Custom JS.\n   - Higher specificity via \&quot;html body\&quot; prefix.\n   - Broader selector coverage across GHL course DOM variants.\n   ============================================================ */\n\n/* ---------- Base canvas ---------- */\nhtml body,\nhtml body .hl_courses,\nhtml body .hl-courses,\nhtml body .course-content,\nhtml body .lesson-content,\nhtml body .client-portal,\nhtml body .client-portal-body,\nhtml body [class*=\&quot;course-player\&quot;],\nhtml body [class*=\&quot;courseView\&quot;],\nhtml body [class*=\&quot;lessonView\&quot;] {\n  background: #1A1A1A !important;\n  color: #FFFFFF !important;\n  font-family: &#x27;Inter&#x27;, system-ui, -apple-system, &#x27;Segoe UI&#x27;, sans-serif !important;\n  -webkit-font-smoothing: antialiased !important;\n}\n\n/* ---------- Headings ---------- */\nhtml body h1,\nhtml body h2,\nhtml body h3,\nhtml body h4,\nhtml body h5,\nhtml body h6,\nhtml body .course-title,\nhtml body .lesson-title,\nhtml body .category-title,\nhtml body [class*=\&quot;course-name\&quot;],\nhtml body [class*=\&quot;lesson-name\&quot;] {\n  color: #FDB913 !important;\n  font-family: &#x27;Inter&#x27;, system-ui, sans-serif !important;\n  font-weight: 900 !important;\n  letter-spacing: -0.01em !important;\n}\nhtml body h1,\nhtml body .course-title { font-size: 36px !important; line-height: 1.1 !important; }\nhtml body h2 { font-size: 26px !important; }\nhtml body h3 { font-size: 20px !important; }\n\n/* ---------- Body copy ---------- */\nhtml body p,\nhtml body li,\nhtml body span,\nhtml body label,\nhtml body div,\nhtml body .lesson-description,\nhtml body .course-description {\n  color: #FFFFFF !important;\n  font-family: &#x27;Inter&#x27;, system-ui, sans-serif !important;\n}\nhtml body p,\nhtml body li { line-height: 1.65 !important; }\n\n/* ---------- Links ---------- */\nhtml body a,\nhtml body a:visited {\n  color: #FDB913 !important;\n  text-decoration: none !important;\n}\nhtml body a:hover { color: #FF8C00 !important; }\n\n/* ---------- Sidebar / category list ---------- */\nhtml body .category-list,\nhtml body .course-sidebar,\nhtml body .lesson-sidebar,\nhtml body .hl-course-sidebar,\nhtml body .sidebar,\nhtml body [class*=\&quot;sidebar\&quot;] {\n  background: #222222 !important;\n  border-right: 1px solid #2a2a2a !important;\n}\nhtml body .category-item,\nhtml body .lesson-item,\nhtml body .lesson-list-item,\nhtml body [class*=\&quot;lesson-row\&quot;] {\n  background: transparent !important;\n  border-bottom: 1px solid #2a2a2a !important;\n  color: #FFFFFF !important;\n}\nhtml body .category-item:hover,\nhtml body .lesson-item:hover,\nhtml body .lesson-list-item:hover,\nhtml body [class*=\&quot;lesson-row\&quot;]:hover {\n  background: #2a2a2a !important;\n  border-left: 3px solid #FDB913 !important;\n}\nhtml body .lesson-item.active,\nhtml body .lesson-list-item.active,\nhtml body .category-item.active,\nhtml body [class*=\&quot;lesson-row\&quot;].active {\n  background: #2a2a2a !important;\n  border-left: 3px solid #FDB913 !important;\n  color: #FDB913 !important;\n}\n\n/* ---------- Cards / containers ---------- */\nhtml body .card,\nhtml body .lesson-card,\nhtml body .course-card,\nhtml body .module-card,\nhtml body .hl-card,\nhtml body .panel,\nhtml body [class*=\&quot;card\&quot;] {\n  background: #222222 !important;\n  border: 1px solid #2a2a2a !important;\n  border-left: 4px solid #FDB913 !important;\n  color: #FFFFFF !important;\n}\n\n/* ---------- Buttons ---------- */\nhtml body button,\nhtml body .btn,\nhtml body .btn-primary,\nhtml body .hl-btn,\nhtml body input[type=\&quot;submit\&quot;],\nhtml body input[type=\&quot;button\&quot;] {\n  background: #FDB913 !important;\n  color: #1A1A1A !important;\n  border: 0 !important;\n  font-family: &#x27;Inter&#x27;, sans-serif !important;\n  font-weight: 900 !important;\n  letter-spacing: 1px !important;\n  text-transform: uppercase !important;\n  font-size: 12px !important;\n  padding: 12px 22px !important;\n}\nhtml body button:hover,\nhtml body .btn:hover,\nhtml body .btn-primary:hover,\nhtml body .hl-btn:hover {\n  background: #FF8C00 !important;\n  color: #1A1A1A !important;\n}\nhtml body .btn-secondary,\nhtml body .btn-outline {\n  background: transparent !important;\n  color: #FDB913 !important;\n  border: 1px solid #FDB913 !important;\n}\nhtml body .btn-secondary:hover,\nhtml body .btn-outline:hover {\n  background: #FDB913 !important;\n  color: #1A1A1A !important;\n}\n\n/* ---------- Progress bars ---------- */\nhtml body .progress,\nhtml body .progress-bar-bg,\nhtml body [class*=\&quot;progress\&quot;]:not(.progress-bar):not(.progress-fill) {\n  background: #2a2a2a !important;\n  height: 8px !important;\n}\nhtml body .progress-bar,\nhtml body .progress-fill,\nhtml body [class*=\&quot;progress-fill\&quot;],\nhtml body [class*=\&quot;progress-bar\&quot;] {\n  background: #FDB913 !important;\n}\n\n/* ---------- Video wrapper ---------- */\nhtml body .video-container,\nhtml body .lesson-video,\nhtml body .vjs-default-skin,\nhtml body [class*=\&quot;video-wrapper\&quot;] {\n  background: #1A1A1A !important;\n  border: 1px solid #2a2a2a !important;\n}\n\n/* ---------- Comments ---------- */\nhtml body .comments,\nhtml body .comment-section,\nhtml body .comment-item,\nhtml body [class*=\&quot;comment\&quot;] {\n  background: #222222 !important;\n  border: 1px solid #2a2a2a !important;\n  color: #FFFFFF !important;\n}\n\n/* ---------- Forms ---------- */\nhtml body input[type=\&quot;text\&quot;],\nhtml body input[type=\&quot;email\&quot;],\nhtml body input[type=\&quot;password\&quot;],\nhtml body input[type=\&quot;url\&quot;],\nhtml body textarea,\nhtml body select {\n  background: #1A1A1A !important;\n  border: 1px solid #2a2a2a !important;\n  color: #FFFFFF !important;\n  font-family: &#x27;Inter&#x27;, sans-serif !important;\n}\nhtml body input:focus,\nhtml body textarea:focus,\nhtml body select:focus {\n  border-color: #FDB913 !important;\n  outline: none !important;\n}\n\n/* ---------- Resource downloads ---------- */\nhtml body .resource-link,\nhtml body .download-link,\nhtml body .attachment,\nhtml body [class*=\&quot;resource\&quot;] a,\nhtml body [class*=\&quot;download\&quot;] a {\n  background: #1A1A1A !important;\n  border-left: 3px solid #FF8C00 !important;\n  color: #FDB913 !important;\n  padding: 10px 14px !important;\n  display: block !important;\n  margin: 6px 0 !important;\n}\nhtml body .resource-link:hover,\nhtml body .download-link:hover {\n  background: #2a2a2a !important;\n  color: #FF8C00 !important;\n}\n\n/* ---------- Top nav / course header ---------- */\nhtml body .course-header,\nhtml body .lesson-header,\nhtml body .navbar,\nhtml body .top-bar,\nhtml body [class*=\&quot;course-header\&quot;],\nhtml body [class*=\&quot;lesson-header\&quot;] {\n  background: #1A1A1A !important;\n  border-bottom: 1px solid #2a2a2a !important;\n  color: #FFFFFF !important;\n}\n&quot;'>Copy</button>
         </div>
         <pre class="code-block"><code>/* ============================================================
-   MYIND SOUND — GHL Course Custom CSS
+   MYIND SOUND — GHL Course Custom CSS (v2)
    Course: Suno Writer Neural Engine
    Palette: #1A1A1A / #FDB913 / #FF8C00 / #FFFFFF
    Paste into: Course → Details → Advanced → Custom CSS
+   ============================================================
+   v2 notes:
+   - Dropped @import (GHL strips it). Inter is loaded via Custom JS.
+   - Higher specificity via &quot;html body&quot; prefix.
+   - Broader selector coverage across GHL course DOM variants.
    ============================================================ */
 
-@import url(&#x27;https://rsms.me/inter/inter.css&#x27;);
-
-:root {
-  --ms-dark: #1A1A1A;
-  --ms-dark-2: #222222;
-  --ms-dark-3: #2a2a2a;
-  --ms-gold: #FDB913;
-  --ms-orange: #FF8C00;
-  --ms-white: #FFFFFF;
-  --ms-muted: #888888;
+/* ---------- Base canvas ---------- */
+html body,
+html body .hl_courses,
+html body .hl-courses,
+html body .course-content,
+html body .lesson-content,
+html body .client-portal,
+html body .client-portal-body,
+html body [class*=&quot;course-player&quot;],
+html body [class*=&quot;courseView&quot;],
+html body [class*=&quot;lessonView&quot;] {
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-family: &#x27;Inter&#x27;, system-ui, -apple-system, &#x27;Segoe UI&#x27;, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
-/* Base */
-body, .hl_courses, .hl-courses, .course-content, .lesson-content,
-.client-portal, .client-portal-body {
-  background: var(--ms-dark) !important;
-  color: var(--ms-white) !important;
-  font-family: &#x27;Inter&#x27;, system-ui, -apple-system, sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6,
-.course-title, .lesson-title, .category-title {
-  color: var(--ms-gold) !important;
+/* ---------- Headings ---------- */
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .course-title,
+html body .lesson-title,
+html body .category-title,
+html body [class*=&quot;course-name&quot;],
+html body [class*=&quot;lesson-name&quot;] {
+  color: #FDB913 !important;
   font-family: &#x27;Inter&#x27;, system-ui, sans-serif !important;
   font-weight: 900 !important;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.01em !important;
 }
-h1, .course-title { font-size: 36px !important; line-height: 1.1 !important; }
-h2 { font-size: 26px !important; }
-h3 { font-size: 20px !important; }
+html body h1,
+html body .course-title { font-size: 36px !important; line-height: 1.1 !important; }
+html body h2 { font-size: 26px !important; }
+html body h3 { font-size: 20px !important; }
 
-/* Body copy */
-p, li, span, .lesson-description, .course-description {
-  color: var(--ms-white) !important;
-  line-height: 1.65 !important;
+/* ---------- Body copy ---------- */
+html body p,
+html body li,
+html body span,
+html body label,
+html body div,
+html body .lesson-description,
+html body .course-description {
+  color: #FFFFFF !important;
+  font-family: &#x27;Inter&#x27;, system-ui, sans-serif !important;
 }
+html body p,
+html body li { line-height: 1.65 !important; }
 
-/* Links */
-a, a:visited {
-  color: var(--ms-gold) !important;
+/* ---------- Links ---------- */
+html body a,
+html body a:visited {
+  color: #FDB913 !important;
   text-decoration: none !important;
-  transition: color 0.15s ease;
 }
-a:hover { color: var(--ms-orange) !important; }
+html body a:hover { color: #FF8C00 !important; }
 
-/* Sidebar / category list */
-.category-list, .course-sidebar, .lesson-sidebar,
-.hl-course-sidebar, .sidebar {
-  background: var(--ms-dark-2) !important;
-  border-right: 1px solid var(--ms-dark-3) !important;
+/* ---------- Sidebar / category list ---------- */
+html body .category-list,
+html body .course-sidebar,
+html body .lesson-sidebar,
+html body .hl-course-sidebar,
+html body .sidebar,
+html body [class*=&quot;sidebar&quot;] {
+  background: #222222 !important;
+  border-right: 1px solid #2a2a2a !important;
 }
-.category-item, .lesson-item, .lesson-list-item {
+html body .category-item,
+html body .lesson-item,
+html body .lesson-list-item,
+html body [class*=&quot;lesson-row&quot;] {
   background: transparent !important;
-  border-bottom: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
+  border-bottom: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
 }
-.category-item:hover, .lesson-item:hover, .lesson-list-item:hover {
-  background: var(--ms-dark-3) !important;
-  border-left: 3px solid var(--ms-gold) !important;
+html body .category-item:hover,
+html body .lesson-item:hover,
+html body .lesson-list-item:hover,
+html body [class*=&quot;lesson-row&quot;]:hover {
+  background: #2a2a2a !important;
+  border-left: 3px solid #FDB913 !important;
 }
-.lesson-item.active, .lesson-list-item.active,
-.category-item.active {
-  background: var(--ms-dark-3) !important;
-  border-left: 3px solid var(--ms-gold) !important;
-  color: var(--ms-gold) !important;
-}
-
-/* Cards / containers */
-.card, .lesson-card, .course-card, .module-card,
-.hl-card, .panel {
-  background: var(--ms-dark-2) !important;
-  border: 1px solid var(--ms-dark-3) !important;
-  border-left: 4px solid var(--ms-gold) !important;
-  border-radius: 0 !important;
-  color: var(--ms-white) !important;
+html body .lesson-item.active,
+html body .lesson-list-item.active,
+html body .category-item.active,
+html body [class*=&quot;lesson-row&quot;].active {
+  background: #2a2a2a !important;
+  border-left: 3px solid #FDB913 !important;
+  color: #FDB913 !important;
 }
 
-/* Buttons */
-button, .btn, .btn-primary, .hl-btn, input[type=&quot;submit&quot;] {
-  background: var(--ms-gold) !important;
-  color: var(--ms-dark) !important;
+/* ---------- Cards / containers ---------- */
+html body .card,
+html body .lesson-card,
+html body .course-card,
+html body .module-card,
+html body .hl-card,
+html body .panel,
+html body [class*=&quot;card&quot;] {
+  background: #222222 !important;
+  border: 1px solid #2a2a2a !important;
+  border-left: 4px solid #FDB913 !important;
+  color: #FFFFFF !important;
+}
+
+/* ---------- Buttons ---------- */
+html body button,
+html body .btn,
+html body .btn-primary,
+html body .hl-btn,
+html body input[type=&quot;submit&quot;],
+html body input[type=&quot;button&quot;] {
+  background: #FDB913 !important;
+  color: #1A1A1A !important;
   border: 0 !important;
-  border-radius: 0 !important;
   font-family: &#x27;Inter&#x27;, sans-serif !important;
   font-weight: 900 !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
   font-size: 12px !important;
   padding: 12px 22px !important;
-  transition: background 0.15s ease !important;
 }
-button:hover, .btn:hover, .btn-primary:hover, .hl-btn:hover {
-  background: var(--ms-orange) !important;
-  color: var(--ms-dark) !important;
+html body button:hover,
+html body .btn:hover,
+html body .btn-primary:hover,
+html body .hl-btn:hover {
+  background: #FF8C00 !important;
+  color: #1A1A1A !important;
 }
-
-/* Secondary / outline buttons */
-.btn-secondary, .btn-outline {
+html body .btn-secondary,
+html body .btn-outline {
   background: transparent !important;
-  color: var(--ms-gold) !important;
-  border: 1px solid var(--ms-gold) !important;
+  color: #FDB913 !important;
+  border: 1px solid #FDB913 !important;
 }
-.btn-secondary:hover, .btn-outline:hover {
-  background: var(--ms-gold) !important;
-  color: var(--ms-dark) !important;
+html body .btn-secondary:hover,
+html body .btn-outline:hover {
+  background: #FDB913 !important;
+  color: #1A1A1A !important;
 }
 
-/* Progress bars */
-.progress, .progress-bar-bg {
-  background: var(--ms-dark-3) !important;
-  border-radius: 0 !important;
+/* ---------- Progress bars ---------- */
+html body .progress,
+html body .progress-bar-bg,
+html body [class*=&quot;progress&quot;]:not(.progress-bar):not(.progress-fill) {
+  background: #2a2a2a !important;
   height: 8px !important;
 }
-.progress-bar, .progress-fill {
-  background: var(--ms-gold) !important;
-  border-radius: 0 !important;
+html body .progress-bar,
+html body .progress-fill,
+html body [class*=&quot;progress-fill&quot;],
+html body [class*=&quot;progress-bar&quot;] {
+  background: #FDB913 !important;
 }
 
-/* Video player wrapper */
-.video-container, .lesson-video, .vjs-default-skin {
-  background: var(--ms-dark) !important;
-  border: 1px solid var(--ms-dark-3) !important;
+/* ---------- Video wrapper ---------- */
+html body .video-container,
+html body .lesson-video,
+html body .vjs-default-skin,
+html body [class*=&quot;video-wrapper&quot;] {
+  background: #1A1A1A !important;
+  border: 1px solid #2a2a2a !important;
 }
 
-/* Comments section */
-.comments, .comment-section, .comment-item {
-  background: var(--ms-dark-2) !important;
-  border: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
+/* ---------- Comments ---------- */
+html body .comments,
+html body .comment-section,
+html body .comment-item,
+html body [class*=&quot;comment&quot;] {
+  background: #222222 !important;
+  border: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
 }
 
-/* Form fields */
-input[type=&quot;text&quot;], input[type=&quot;email&quot;], input[type=&quot;password&quot;],
-textarea, select {
-  background: var(--ms-dark) !important;
-  border: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
-  border-radius: 0 !important;
+/* ---------- Forms ---------- */
+html body input[type=&quot;text&quot;],
+html body input[type=&quot;email&quot;],
+html body input[type=&quot;password&quot;],
+html body input[type=&quot;url&quot;],
+html body textarea,
+html body select {
+  background: #1A1A1A !important;
+  border: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
   font-family: &#x27;Inter&#x27;, sans-serif !important;
 }
-input:focus, textarea:focus, select:focus {
-  border-color: var(--ms-gold) !important;
+html body input:focus,
+html body textarea:focus,
+html body select:focus {
+  border-color: #FDB913 !important;
   outline: none !important;
 }
 
-/* Resource downloads */
-.resource-link, .download-link, .attachment {
-  background: var(--ms-dark) !important;
-  border-left: 3px solid var(--ms-orange) !important;
-  color: var(--ms-gold) !important;
+/* ---------- Resource downloads ---------- */
+html body .resource-link,
+html body .download-link,
+html body .attachment,
+html body [class*=&quot;resource&quot;] a,
+html body [class*=&quot;download&quot;] a {
+  background: #1A1A1A !important;
+  border-left: 3px solid #FF8C00 !important;
+  color: #FDB913 !important;
   padding: 10px 14px !important;
   display: block !important;
   margin: 6px 0 !important;
 }
-.resource-link:hover, .download-link:hover {
-  background: var(--ms-dark-3) !important;
-  color: var(--ms-orange) !important;
+html body .resource-link:hover,
+html body .download-link:hover {
+  background: #2a2a2a !important;
+  color: #FF8C00 !important;
 }
 
-/* Top nav inside the course view */
-.course-header, .lesson-header, .navbar, .top-bar {
-  background: var(--ms-dark) !important;
-  border-bottom: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
-}
-
-/* Remove rounded corners everywhere — brand is sharp */
-* { border-radius: 0 !important; }
-img.avatar, .avatar img { border-radius: 50% !important; }
-
-/* Mobile */
-@media (max-width: 720px) {
-  h1, .course-title { font-size: 26px !important; }
-  h2 { font-size: 20px !important; }
+/* ---------- Top nav / course header ---------- */
+html body .course-header,
+html body .lesson-header,
+html body .navbar,
+html body .top-bar,
+html body [class*=&quot;course-header&quot;],
+html body [class*=&quot;lesson-header&quot;] {
+  background: #1A1A1A !important;
+  border-bottom: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
 }
 </code></pre>
       </div>
       <div class="copy-block">
         <div class="copy-block-head">
           <h3>Custom JavaScript</h3>
-          <button class="copy-btn" data-copy='&quot;/* ============================================================\n   MYIND SOUND \u2014 GHL Course Custom JavaScript\n   Course: Suno Writer Neural Engine\n   Paste into: Course \u2192 Details \u2192 Advanced \u2192 Custom Javascript\n   ============================================================\n   Light enhancements only \u2014 no destructive DOM rewriting.\n   ============================================================ */\n\n(function () {\n  &#x27;use strict&#x27;;\n\n  // 1. Inject Inter font if it isn&#x27;t already on the page\n  if (!document.querySelector(&#x27;link[href*=\&quot;rsms.me/inter\&quot;]&#x27;)) {\n    var link = document.createElement(&#x27;link&#x27;);\n    link.rel = &#x27;stylesheet&#x27;;\n    link.href = &#x27;https://rsms.me/inter/inter.css&#x27;;\n    document.head.appendChild(link);\n  }\n\n  // 2. Tag the body so the CSS can scope brand overrides safely\n  document.body.classList.add(&#x27;myind-sound-course&#x27;);\n\n  // 3. Set the browser tab title to brand format\n  function brandTitle() {\n    var current = document.title || &#x27;&#x27;;\n    if (current.indexOf(&#x27;Myind Sound&#x27;) === -1) {\n      document.title = current + &#x27; \u2014 Myind Sound&#x27;;\n    }\n  }\n  brandTitle();\n\n  // 4. Smooth-scroll to top when switching lessons\n  function hookLessonClicks() {\n    var items = document.querySelectorAll(\n      &#x27;.lesson-item, .lesson-list-item, [class*=\&quot;lesson-link\&quot;]&#x27;\n    );\n    items.forEach(function (el) {\n      if (el.dataset.msHooked) return;\n      el.dataset.msHooked = &#x27;1&#x27;;\n      el.addEventListener(&#x27;click&#x27;, function () {\n        setTimeout(function () {\n          window.scrollTo({ top: 0, behavior: &#x27;smooth&#x27; });\n        }, 100);\n      });\n    });\n  }\n\n  // 5. Auto-uppercase main course title for brand voice\n  function styleCourseTitle() {\n    var title = document.querySelector(\n      &#x27;.course-title, h1.course-name, h1[class*=\&quot;course\&quot;]&#x27;\n    );\n    if (title &amp;&amp; !title.dataset.msStyled) {\n      title.dataset.msStyled = &#x27;1&#x27;;\n      title.style.textTransform = &#x27;uppercase&#x27;;\n      title.style.letterSpacing = &#x27;0.5px&#x27;;\n    }\n  }\n\n  // 6. Re-run hooks when GHL injects content dynamically (SPA-style nav)\n  var observer = new MutationObserver(function () {\n    hookLessonClicks();\n    styleCourseTitle();\n    brandTitle();\n  });\n\n  function start() {\n    hookLessonClicks();\n    styleCourseTitle();\n    observer.observe(document.body, { childList: true, subtree: true });\n  }\n\n  if (document.readyState === &#x27;loading&#x27;) {\n    document.addEventListener(&#x27;DOMContentLoaded&#x27;, start);\n  } else {\n    start();\n  }\n})();\n&quot;'>Copy</button>
+          <button class="copy-btn" data-copy='&quot;/* ============================================================\n   MYIND SOUND \u2014 GHL Course Custom JavaScript\n   Course: Suno Writer Neural Engine\n   Paste into: Course \u2192 Details \u2192 Advanced \u2192 Custom Javascript\n   ============================================================\n   Light enhancements only \u2014 no destructive DOM rewriting.\n   ============================================================ */\n\n(function () {\n  &#x27;use strict&#x27;;\n\n  // 1. Inject Inter font (Google Fonts is more reliable inside GHL than @import)\n  if (!document.querySelector(&#x27;link[href*=\&quot;fonts.googleapis.com\&quot;][href*=\&quot;Inter\&quot;]&#x27;)) {\n    var preconnect1 = document.createElement(&#x27;link&#x27;);\n    preconnect1.rel = &#x27;preconnect&#x27;;\n    preconnect1.href = &#x27;https://fonts.googleapis.com&#x27;;\n    document.head.appendChild(preconnect1);\n\n    var preconnect2 = document.createElement(&#x27;link&#x27;);\n    preconnect2.rel = &#x27;preconnect&#x27;;\n    preconnect2.href = &#x27;https://fonts.gstatic.com&#x27;;\n    preconnect2.crossOrigin = &#x27;anonymous&#x27;;\n    document.head.appendChild(preconnect2);\n\n    var link = document.createElement(&#x27;link&#x27;);\n    link.rel = &#x27;stylesheet&#x27;;\n    link.href = &#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap&#x27;;\n    document.head.appendChild(link);\n  }\n\n  // 2. Tag the body so the CSS can scope brand overrides safely\n  document.body.classList.add(&#x27;myind-sound-course&#x27;);\n\n  // 3. Set the browser tab title to brand format\n  function brandTitle() {\n    var current = document.title || &#x27;&#x27;;\n    if (current.indexOf(&#x27;Myind Sound&#x27;) === -1) {\n      document.title = current + &#x27; \u2014 Myind Sound&#x27;;\n    }\n  }\n  brandTitle();\n\n  // 4. Smooth-scroll to top when switching lessons\n  function hookLessonClicks() {\n    var items = document.querySelectorAll(\n      &#x27;.lesson-item, .lesson-list-item, [class*=\&quot;lesson-link\&quot;]&#x27;\n    );\n    items.forEach(function (el) {\n      if (el.dataset.msHooked) return;\n      el.dataset.msHooked = &#x27;1&#x27;;\n      el.addEventListener(&#x27;click&#x27;, function () {\n        setTimeout(function () {\n          window.scrollTo({ top: 0, behavior: &#x27;smooth&#x27; });\n        }, 100);\n      });\n    });\n  }\n\n  // 5. Auto-uppercase main course title for brand voice\n  function styleCourseTitle() {\n    var title = document.querySelector(\n      &#x27;.course-title, h1.course-name, h1[class*=\&quot;course\&quot;]&#x27;\n    );\n    if (title &amp;&amp; !title.dataset.msStyled) {\n      title.dataset.msStyled = &#x27;1&#x27;;\n      title.style.textTransform = &#x27;uppercase&#x27;;\n      title.style.letterSpacing = &#x27;0.5px&#x27;;\n    }\n  }\n\n  // 6. Re-run hooks when GHL injects content dynamically (SPA-style nav)\n  var observer = new MutationObserver(function () {\n    hookLessonClicks();\n    styleCourseTitle();\n    brandTitle();\n  });\n\n  function start() {\n    hookLessonClicks();\n    styleCourseTitle();\n    observer.observe(document.body, { childList: true, subtree: true });\n  }\n\n  if (document.readyState === &#x27;loading&#x27;) {\n    document.addEventListener(&#x27;DOMContentLoaded&#x27;, start);\n  } else {\n    start();\n  }\n})();\n&quot;'>Copy</button>
         </div>
         <pre class="code-block"><code>/* ============================================================
    MYIND SOUND — GHL Course Custom JavaScript
@@ -260,11 +315,22 @@ img.avatar, .avatar img { border-radius: 50% !important; }
 (function () {
   &#x27;use strict&#x27;;
 
-  // 1. Inject Inter font if it isn&#x27;t already on the page
-  if (!document.querySelector(&#x27;link[href*=&quot;rsms.me/inter&quot;]&#x27;)) {
+  // 1. Inject Inter font (Google Fonts is more reliable inside GHL than @import)
+  if (!document.querySelector(&#x27;link[href*=&quot;fonts.googleapis.com&quot;][href*=&quot;Inter&quot;]&#x27;)) {
+    var preconnect1 = document.createElement(&#x27;link&#x27;);
+    preconnect1.rel = &#x27;preconnect&#x27;;
+    preconnect1.href = &#x27;https://fonts.googleapis.com&#x27;;
+    document.head.appendChild(preconnect1);
+
+    var preconnect2 = document.createElement(&#x27;link&#x27;);
+    preconnect2.rel = &#x27;preconnect&#x27;;
+    preconnect2.href = &#x27;https://fonts.gstatic.com&#x27;;
+    preconnect2.crossOrigin = &#x27;anonymous&#x27;;
+    document.head.appendChild(preconnect2);
+
     var link = document.createElement(&#x27;link&#x27;);
     link.rel = &#x27;stylesheet&#x27;;
-    link.href = &#x27;https://rsms.me/inter/inter.css&#x27;;
+    link.href = &#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap&#x27;;
     document.head.appendChild(link);
   }
 
@@ -346,7 +412,7 @@ img.avatar, .avatar img { border-radius: 50% !important; }
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -437,7 +503,7 @@ WHAT TO DO
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -530,7 +596,7 @@ WHAT TO DO
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -608,7 +674,7 @@ WHAT TO DO
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -721,7 +787,7 @@ Generate one full song and post it in the community with hashtag #sunowriter-les
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -803,7 +869,7 @@ Build one beat, swap one H-Pad, post both versions in the community.</code></pre
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -885,7 +951,7 @@ Generate one Sample Maker loop, chop it in your DAW, post the chop in the commun
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -966,7 +1032,7 @@ Analyze a song you wish you had produced. Tell us in the community what surprise
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1063,7 +1129,7 @@ WHAT TO DO
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1140,7 +1206,7 @@ WHAT TO DO
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1223,7 +1289,7 @@ Save three DNA profiles. Post one blend in the community.</code></pre>
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1304,7 +1370,7 @@ WHAT TO DO
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1382,7 +1448,7 @@ WHAT TO DO
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1479,7 +1545,7 @@ Ship one full track using this exact flow. Post in the community with #sunowrite
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1560,7 +1626,7 @@ If you have been stuck for more than ten minutes, post in the community help cha
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -1691,19 +1757,27 @@ Module 2 is coming. Watch the community channel for the announcement.</code></pr
       });
     }
 
-    function toggleLesson(el) {
-      el.parentElement.classList.toggle('open');
+    function setLessonOpen(lesson, open) {
+      const body = lesson.querySelector(':scope > .lesson-body');
+      if (!body) return;
+      body.style.display = open ? 'block' : 'none';
+      lesson.classList.toggle('open', open);
     }
 
-    // Force every lesson closed on load (defensive against stale state)
-    document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+    function isLessonOpen(lesson) {
+      const body = lesson.querySelector(':scope > .lesson-body');
+      return body && body.style.display !== 'none';
+    }
 
-    // Attach click handlers to each lesson header (more robust than inline onclick)
+    // Force every lesson closed on load
+    document.querySelectorAll('.lesson').forEach(l => setLessonOpen(l, false));
+
+    // Attach click handlers to each lesson header
     document.querySelectorAll('.lesson-header').forEach(header => {
       header.addEventListener('click', (e) => {
-        // Don't toggle if user clicked an interactive element inside the header
         if (e.target.closest('button, a, input')) return;
-        header.parentElement.classList.toggle('open');
+        const lesson = header.parentElement;
+        setLessonOpen(lesson, !isLessonOpen(lesson));
       });
     });
 
@@ -1711,10 +1785,10 @@ Module 2 is coming. Watch the community channel for the announcement.</code></pr
     const expandBtn = document.getElementById('expandAllBtn');
     const collapseBtn = document.getElementById('collapseAllBtn');
     if (expandBtn) expandBtn.addEventListener('click', () => {
-      document.querySelectorAll('.lesson').forEach(l => l.classList.add('open'));
+      document.querySelectorAll('.lesson').forEach(l => setLessonOpen(l, true));
     });
     if (collapseBtn) collapseBtn.addEventListener('click', () => {
-      document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+      document.querySelectorAll('.lesson').forEach(l => setLessonOpen(l, false));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 

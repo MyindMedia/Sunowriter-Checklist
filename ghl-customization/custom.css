@@ -1,184 +1,239 @@
 /* ============================================================
-   MYIND SOUND — GHL Course Custom CSS
+   MYIND SOUND — GHL Course Custom CSS (v2)
    Course: Suno Writer Neural Engine
    Palette: #1A1A1A / #FDB913 / #FF8C00 / #FFFFFF
    Paste into: Course → Details → Advanced → Custom CSS
+   ============================================================
+   v2 notes:
+   - Dropped @import (GHL strips it). Inter is loaded via Custom JS.
+   - Higher specificity via "html body" prefix.
+   - Broader selector coverage across GHL course DOM variants.
    ============================================================ */
 
-@import url('https://rsms.me/inter/inter.css');
-
-:root {
-  --ms-dark: #1A1A1A;
-  --ms-dark-2: #222222;
-  --ms-dark-3: #2a2a2a;
-  --ms-gold: #FDB913;
-  --ms-orange: #FF8C00;
-  --ms-white: #FFFFFF;
-  --ms-muted: #888888;
+/* ---------- Base canvas ---------- */
+html body,
+html body .hl_courses,
+html body .hl-courses,
+html body .course-content,
+html body .lesson-content,
+html body .client-portal,
+html body .client-portal-body,
+html body [class*="course-player"],
+html body [class*="courseView"],
+html body [class*="lessonView"] {
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
-/* Base */
-body, .hl_courses, .hl-courses, .course-content, .lesson-content,
-.client-portal, .client-portal-body {
-  background: var(--ms-dark) !important;
-  color: var(--ms-white) !important;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6,
-.course-title, .lesson-title, .category-title {
-  color: var(--ms-gold) !important;
+/* ---------- Headings ---------- */
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .course-title,
+html body .lesson-title,
+html body .category-title,
+html body [class*="course-name"],
+html body [class*="lesson-name"] {
+  color: #FDB913 !important;
   font-family: 'Inter', system-ui, sans-serif !important;
   font-weight: 900 !important;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.01em !important;
 }
-h1, .course-title { font-size: 36px !important; line-height: 1.1 !important; }
-h2 { font-size: 26px !important; }
-h3 { font-size: 20px !important; }
+html body h1,
+html body .course-title { font-size: 36px !important; line-height: 1.1 !important; }
+html body h2 { font-size: 26px !important; }
+html body h3 { font-size: 20px !important; }
 
-/* Body copy */
-p, li, span, .lesson-description, .course-description {
-  color: var(--ms-white) !important;
-  line-height: 1.65 !important;
+/* ---------- Body copy ---------- */
+html body p,
+html body li,
+html body span,
+html body label,
+html body div,
+html body .lesson-description,
+html body .course-description {
+  color: #FFFFFF !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
 }
+html body p,
+html body li { line-height: 1.65 !important; }
 
-/* Links */
-a, a:visited {
-  color: var(--ms-gold) !important;
+/* ---------- Links ---------- */
+html body a,
+html body a:visited {
+  color: #FDB913 !important;
   text-decoration: none !important;
-  transition: color 0.15s ease;
 }
-a:hover { color: var(--ms-orange) !important; }
+html body a:hover { color: #FF8C00 !important; }
 
-/* Sidebar / category list */
-.category-list, .course-sidebar, .lesson-sidebar,
-.hl-course-sidebar, .sidebar {
-  background: var(--ms-dark-2) !important;
-  border-right: 1px solid var(--ms-dark-3) !important;
+/* ---------- Sidebar / category list ---------- */
+html body .category-list,
+html body .course-sidebar,
+html body .lesson-sidebar,
+html body .hl-course-sidebar,
+html body .sidebar,
+html body [class*="sidebar"] {
+  background: #222222 !important;
+  border-right: 1px solid #2a2a2a !important;
 }
-.category-item, .lesson-item, .lesson-list-item {
+html body .category-item,
+html body .lesson-item,
+html body .lesson-list-item,
+html body [class*="lesson-row"] {
   background: transparent !important;
-  border-bottom: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
+  border-bottom: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
 }
-.category-item:hover, .lesson-item:hover, .lesson-list-item:hover {
-  background: var(--ms-dark-3) !important;
-  border-left: 3px solid var(--ms-gold) !important;
+html body .category-item:hover,
+html body .lesson-item:hover,
+html body .lesson-list-item:hover,
+html body [class*="lesson-row"]:hover {
+  background: #2a2a2a !important;
+  border-left: 3px solid #FDB913 !important;
 }
-.lesson-item.active, .lesson-list-item.active,
-.category-item.active {
-  background: var(--ms-dark-3) !important;
-  border-left: 3px solid var(--ms-gold) !important;
-  color: var(--ms-gold) !important;
-}
-
-/* Cards / containers */
-.card, .lesson-card, .course-card, .module-card,
-.hl-card, .panel {
-  background: var(--ms-dark-2) !important;
-  border: 1px solid var(--ms-dark-3) !important;
-  border-left: 4px solid var(--ms-gold) !important;
-  border-radius: 0 !important;
-  color: var(--ms-white) !important;
+html body .lesson-item.active,
+html body .lesson-list-item.active,
+html body .category-item.active,
+html body [class*="lesson-row"].active {
+  background: #2a2a2a !important;
+  border-left: 3px solid #FDB913 !important;
+  color: #FDB913 !important;
 }
 
-/* Buttons */
-button, .btn, .btn-primary, .hl-btn, input[type="submit"] {
-  background: var(--ms-gold) !important;
-  color: var(--ms-dark) !important;
+/* ---------- Cards / containers ---------- */
+html body .card,
+html body .lesson-card,
+html body .course-card,
+html body .module-card,
+html body .hl-card,
+html body .panel,
+html body [class*="card"] {
+  background: #222222 !important;
+  border: 1px solid #2a2a2a !important;
+  border-left: 4px solid #FDB913 !important;
+  color: #FFFFFF !important;
+}
+
+/* ---------- Buttons ---------- */
+html body button,
+html body .btn,
+html body .btn-primary,
+html body .hl-btn,
+html body input[type="submit"],
+html body input[type="button"] {
+  background: #FDB913 !important;
+  color: #1A1A1A !important;
   border: 0 !important;
-  border-radius: 0 !important;
   font-family: 'Inter', sans-serif !important;
   font-weight: 900 !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
   font-size: 12px !important;
   padding: 12px 22px !important;
-  transition: background 0.15s ease !important;
 }
-button:hover, .btn:hover, .btn-primary:hover, .hl-btn:hover {
-  background: var(--ms-orange) !important;
-  color: var(--ms-dark) !important;
+html body button:hover,
+html body .btn:hover,
+html body .btn-primary:hover,
+html body .hl-btn:hover {
+  background: #FF8C00 !important;
+  color: #1A1A1A !important;
 }
-
-/* Secondary / outline buttons */
-.btn-secondary, .btn-outline {
+html body .btn-secondary,
+html body .btn-outline {
   background: transparent !important;
-  color: var(--ms-gold) !important;
-  border: 1px solid var(--ms-gold) !important;
+  color: #FDB913 !important;
+  border: 1px solid #FDB913 !important;
 }
-.btn-secondary:hover, .btn-outline:hover {
-  background: var(--ms-gold) !important;
-  color: var(--ms-dark) !important;
+html body .btn-secondary:hover,
+html body .btn-outline:hover {
+  background: #FDB913 !important;
+  color: #1A1A1A !important;
 }
 
-/* Progress bars */
-.progress, .progress-bar-bg {
-  background: var(--ms-dark-3) !important;
-  border-radius: 0 !important;
+/* ---------- Progress bars ---------- */
+html body .progress,
+html body .progress-bar-bg,
+html body [class*="progress"]:not(.progress-bar):not(.progress-fill) {
+  background: #2a2a2a !important;
   height: 8px !important;
 }
-.progress-bar, .progress-fill {
-  background: var(--ms-gold) !important;
-  border-radius: 0 !important;
+html body .progress-bar,
+html body .progress-fill,
+html body [class*="progress-fill"],
+html body [class*="progress-bar"] {
+  background: #FDB913 !important;
 }
 
-/* Video player wrapper */
-.video-container, .lesson-video, .vjs-default-skin {
-  background: var(--ms-dark) !important;
-  border: 1px solid var(--ms-dark-3) !important;
+/* ---------- Video wrapper ---------- */
+html body .video-container,
+html body .lesson-video,
+html body .vjs-default-skin,
+html body [class*="video-wrapper"] {
+  background: #1A1A1A !important;
+  border: 1px solid #2a2a2a !important;
 }
 
-/* Comments section */
-.comments, .comment-section, .comment-item {
-  background: var(--ms-dark-2) !important;
-  border: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
+/* ---------- Comments ---------- */
+html body .comments,
+html body .comment-section,
+html body .comment-item,
+html body [class*="comment"] {
+  background: #222222 !important;
+  border: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
 }
 
-/* Form fields */
-input[type="text"], input[type="email"], input[type="password"],
-textarea, select {
-  background: var(--ms-dark) !important;
-  border: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
-  border-radius: 0 !important;
+/* ---------- Forms ---------- */
+html body input[type="text"],
+html body input[type="email"],
+html body input[type="password"],
+html body input[type="url"],
+html body textarea,
+html body select {
+  background: #1A1A1A !important;
+  border: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
   font-family: 'Inter', sans-serif !important;
 }
-input:focus, textarea:focus, select:focus {
-  border-color: var(--ms-gold) !important;
+html body input:focus,
+html body textarea:focus,
+html body select:focus {
+  border-color: #FDB913 !important;
   outline: none !important;
 }
 
-/* Resource downloads */
-.resource-link, .download-link, .attachment {
-  background: var(--ms-dark) !important;
-  border-left: 3px solid var(--ms-orange) !important;
-  color: var(--ms-gold) !important;
+/* ---------- Resource downloads ---------- */
+html body .resource-link,
+html body .download-link,
+html body .attachment,
+html body [class*="resource"] a,
+html body [class*="download"] a {
+  background: #1A1A1A !important;
+  border-left: 3px solid #FF8C00 !important;
+  color: #FDB913 !important;
   padding: 10px 14px !important;
   display: block !important;
   margin: 6px 0 !important;
 }
-.resource-link:hover, .download-link:hover {
-  background: var(--ms-dark-3) !important;
-  color: var(--ms-orange) !important;
+html body .resource-link:hover,
+html body .download-link:hover {
+  background: #2a2a2a !important;
+  color: #FF8C00 !important;
 }
 
-/* Top nav inside the course view */
-.course-header, .lesson-header, .navbar, .top-bar {
-  background: var(--ms-dark) !important;
-  border-bottom: 1px solid var(--ms-dark-3) !important;
-  color: var(--ms-white) !important;
-}
-
-/* Remove rounded corners everywhere — brand is sharp */
-* { border-radius: 0 !important; }
-img.avatar, .avatar img { border-radius: 50% !important; }
-
-/* Mobile */
-@media (max-width: 720px) {
-  h1, .course-title { font-size: 26px !important; }
-  h2 { font-size: 20px !important; }
+/* ---------- Top nav / course header ---------- */
+html body .course-header,
+html body .lesson-header,
+html body .navbar,
+html body .top-bar,
+html body [class*="course-header"],
+html body [class*="lesson-header"] {
+  background: #1A1A1A !important;
+  border-bottom: 1px solid #2a2a2a !important;
+  color: #FFFFFF !important;
 }

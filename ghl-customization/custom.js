@@ -9,11 +9,22 @@
 (function () {
   'use strict';
 
-  // 1. Inject Inter font if it isn't already on the page
-  if (!document.querySelector('link[href*="rsms.me/inter"]')) {
+  // 1. Inject Inter font (Google Fonts is more reliable inside GHL than @import)
+  if (!document.querySelector('link[href*="fonts.googleapis.com"][href*="Inter"]')) {
+    var preconnect1 = document.createElement('link');
+    preconnect1.rel = 'preconnect';
+    preconnect1.href = 'https://fonts.googleapis.com';
+    document.head.appendChild(preconnect1);
+
+    var preconnect2 = document.createElement('link');
+    preconnect2.rel = 'preconnect';
+    preconnect2.href = 'https://fonts.gstatic.com';
+    preconnect2.crossOrigin = 'anonymous';
+    document.head.appendChild(preconnect2);
+
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'https://rsms.me/inter/inter.css';
+    link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap';
     document.head.appendChild(link);
   }
 

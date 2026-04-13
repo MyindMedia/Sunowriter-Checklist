@@ -144,7 +144,7 @@ def render_lesson(lesson):
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="thumb-block">
         <h3>Lesson Thumbnail</h3>
         <div class="thumb-wrap">
@@ -252,19 +252,27 @@ HTML_TEMPLATE = """<!doctype html>
       }});
     }}
 
-    function toggleLesson(el) {{
-      el.parentElement.classList.toggle('open');
+    function setLessonOpen(lesson, open) {{
+      const body = lesson.querySelector(':scope > .lesson-body');
+      if (!body) return;
+      body.style.display = open ? 'block' : 'none';
+      lesson.classList.toggle('open', open);
     }}
 
-    // Force every lesson closed on load (defensive against stale state)
-    document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+    function isLessonOpen(lesson) {{
+      const body = lesson.querySelector(':scope > .lesson-body');
+      return body && body.style.display !== 'none';
+    }}
 
-    // Attach click handlers to each lesson header (more robust than inline onclick)
+    // Force every lesson closed on load
+    document.querySelectorAll('.lesson').forEach(l => setLessonOpen(l, false));
+
+    // Attach click handlers to each lesson header
     document.querySelectorAll('.lesson-header').forEach(header => {{
       header.addEventListener('click', (e) => {{
-        // Don't toggle if user clicked an interactive element inside the header
         if (e.target.closest('button, a, input')) return;
-        header.parentElement.classList.toggle('open');
+        const lesson = header.parentElement;
+        setLessonOpen(lesson, !isLessonOpen(lesson));
       }});
     }});
 
@@ -272,10 +280,10 @@ HTML_TEMPLATE = """<!doctype html>
     const expandBtn = document.getElementById('expandAllBtn');
     const collapseBtn = document.getElementById('collapseAllBtn');
     if (expandBtn) expandBtn.addEventListener('click', () => {{
-      document.querySelectorAll('.lesson').forEach(l => l.classList.add('open'));
+      document.querySelectorAll('.lesson').forEach(l => setLessonOpen(l, true));
     }});
     if (collapseBtn) collapseBtn.addEventListener('click', () => {{
-      document.querySelectorAll('.lesson').forEach(l => l.classList.remove('open'));
+      document.querySelectorAll('.lesson').forEach(l => setLessonOpen(l, false));
       window.scrollTo({{ top: 0, behavior: 'smooth' }});
     }});
 
@@ -398,7 +406,7 @@ def render_ghl_customization():
         <span class="toggle">▼</span>
       </div>
     </div>
-    <div class="lesson-body">
+    <div class="lesson-body" style="display:none;">
       <div class="ghl-custom-howto">
         <p>Open GHL → Memberships → Suno Writer Neural Engine → <strong>Details → Advanced</strong>. Paste the CSS into <strong>Custom CSS</strong> and the JS into <strong>Custom Javascript</strong>, then Save.</p>
       </div>
