@@ -92,13 +92,15 @@ def render_lesson(lesson):
     for i, cb in enumerate(lesson["copy_blocks"]):
         content_escaped = html.escape(cb["content"])
         content_attr = json.dumps(cb["content"])
+        is_prose = "body" in cb["label"].lower()
+        block_class = "prose-block" if is_prose else "code-block"
         copy_blocks_html += f'''
       <div class="copy-block">
         <div class="copy-block-head">
           <h3>{html.escape(cb["label"])}</h3>
           <button class="copy-btn" data-copy='{html.escape(content_attr, quote=True)}'>Copy</button>
         </div>
-        <pre class="code-block"><code>{content_escaped}</code></pre>
+        <pre class="{block_class}"><code>{content_escaped}</code></pre>
       </div>'''
 
     resources_html = ""
