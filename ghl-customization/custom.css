@@ -1,0 +1,184 @@
+/* ============================================================
+   MYIND SOUND — GHL Course Custom CSS
+   Course: Suno Writer Neural Engine
+   Palette: #1A1A1A / #FDB913 / #FF8C00 / #FFFFFF
+   Paste into: Course → Details → Advanced → Custom CSS
+   ============================================================ */
+
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+  --ms-dark: #1A1A1A;
+  --ms-dark-2: #222222;
+  --ms-dark-3: #2a2a2a;
+  --ms-gold: #FDB913;
+  --ms-orange: #FF8C00;
+  --ms-white: #FFFFFF;
+  --ms-muted: #888888;
+}
+
+/* Base */
+body, .hl_courses, .hl-courses, .course-content, .lesson-content,
+.client-portal, .client-portal-body {
+  background: var(--ms-dark) !important;
+  color: var(--ms-white) !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.course-title, .lesson-title, .category-title {
+  color: var(--ms-gold) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em;
+}
+h1, .course-title { font-size: 36px !important; line-height: 1.1 !important; }
+h2 { font-size: 26px !important; }
+h3 { font-size: 20px !important; }
+
+/* Body copy */
+p, li, span, .lesson-description, .course-description {
+  color: var(--ms-white) !important;
+  line-height: 1.65 !important;
+}
+
+/* Links */
+a, a:visited {
+  color: var(--ms-gold) !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
+}
+a:hover { color: var(--ms-orange) !important; }
+
+/* Sidebar / category list */
+.category-list, .course-sidebar, .lesson-sidebar,
+.hl-course-sidebar, .sidebar {
+  background: var(--ms-dark-2) !important;
+  border-right: 1px solid var(--ms-dark-3) !important;
+}
+.category-item, .lesson-item, .lesson-list-item {
+  background: transparent !important;
+  border-bottom: 1px solid var(--ms-dark-3) !important;
+  color: var(--ms-white) !important;
+}
+.category-item:hover, .lesson-item:hover, .lesson-list-item:hover {
+  background: var(--ms-dark-3) !important;
+  border-left: 3px solid var(--ms-gold) !important;
+}
+.lesson-item.active, .lesson-list-item.active,
+.category-item.active {
+  background: var(--ms-dark-3) !important;
+  border-left: 3px solid var(--ms-gold) !important;
+  color: var(--ms-gold) !important;
+}
+
+/* Cards / containers */
+.card, .lesson-card, .course-card, .module-card,
+.hl-card, .panel {
+  background: var(--ms-dark-2) !important;
+  border: 1px solid var(--ms-dark-3) !important;
+  border-left: 4px solid var(--ms-gold) !important;
+  border-radius: 0 !important;
+  color: var(--ms-white) !important;
+}
+
+/* Buttons */
+button, .btn, .btn-primary, .hl-btn, input[type="submit"] {
+  background: var(--ms-gold) !important;
+  color: var(--ms-dark) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+  padding: 12px 22px !important;
+  transition: background 0.15s ease !important;
+}
+button:hover, .btn:hover, .btn-primary:hover, .hl-btn:hover {
+  background: var(--ms-orange) !important;
+  color: var(--ms-dark) !important;
+}
+
+/* Secondary / outline buttons */
+.btn-secondary, .btn-outline {
+  background: transparent !important;
+  color: var(--ms-gold) !important;
+  border: 1px solid var(--ms-gold) !important;
+}
+.btn-secondary:hover, .btn-outline:hover {
+  background: var(--ms-gold) !important;
+  color: var(--ms-dark) !important;
+}
+
+/* Progress bars */
+.progress, .progress-bar-bg {
+  background: var(--ms-dark-3) !important;
+  border-radius: 0 !important;
+  height: 8px !important;
+}
+.progress-bar, .progress-fill {
+  background: var(--ms-gold) !important;
+  border-radius: 0 !important;
+}
+
+/* Video player wrapper */
+.video-container, .lesson-video, .vjs-default-skin {
+  background: var(--ms-dark) !important;
+  border: 1px solid var(--ms-dark-3) !important;
+}
+
+/* Comments section */
+.comments, .comment-section, .comment-item {
+  background: var(--ms-dark-2) !important;
+  border: 1px solid var(--ms-dark-3) !important;
+  color: var(--ms-white) !important;
+}
+
+/* Form fields */
+input[type="text"], input[type="email"], input[type="password"],
+textarea, select {
+  background: var(--ms-dark) !important;
+  border: 1px solid var(--ms-dark-3) !important;
+  color: var(--ms-white) !important;
+  border-radius: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--ms-gold) !important;
+  outline: none !important;
+}
+
+/* Resource downloads */
+.resource-link, .download-link, .attachment {
+  background: var(--ms-dark) !important;
+  border-left: 3px solid var(--ms-orange) !important;
+  color: var(--ms-gold) !important;
+  padding: 10px 14px !important;
+  display: block !important;
+  margin: 6px 0 !important;
+}
+.resource-link:hover, .download-link:hover {
+  background: var(--ms-dark-3) !important;
+  color: var(--ms-orange) !important;
+}
+
+/* Top nav inside the course view */
+.course-header, .lesson-header, .navbar, .top-bar {
+  background: var(--ms-dark) !important;
+  border-bottom: 1px solid var(--ms-dark-3) !important;
+  color: var(--ms-white) !important;
+}
+
+/* Remove rounded corners everywhere — brand is sharp */
+* { border-radius: 0 !important; }
+img.avatar, .avatar img { border-radius: 50% !important; }
+
+/* Mobile */
+@media (max-width: 720px) {
+  h1, .course-title { font-size: 26px !important; }
+  h2 { font-size: 20px !important; }
+}

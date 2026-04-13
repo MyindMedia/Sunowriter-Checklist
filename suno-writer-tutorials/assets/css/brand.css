@@ -194,6 +194,19 @@ header.site-header {
 }
 .lesson.open .lesson-body { display: block; }
 
+/* GHL customization card */
+.lesson.ghl-custom { border-left-color: var(--orange); }
+.lesson.ghl-custom .num { color: var(--orange); }
+.ghl-custom-howto {
+  padding: 16px 20px;
+  background: var(--dark);
+  border-left: 3px solid var(--orange);
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.ghl-custom-howto strong { color: var(--gold); }
+
 /* Lesson thumbnail */
 .thumb-block { margin: 20px 0 8px; }
 .thumb-block h3 {
