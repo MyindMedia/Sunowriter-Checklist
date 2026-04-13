@@ -201,16 +201,81 @@ def render_banner(width, height, out_path):
     print(f"  ✓ {out_path.name}")
 
 
+def render_hero_backdrop(width, height, out_path):
+    """Clean textured backdrop for GHL course hero — NO text.
+    GHL overlays the course title, description, and button on top of this,
+    so the image must be empty of text and visually calm.
+    """
+    img = Image.new("RGB", (width, height), DARK)
+    draw = ImageDraw.Draw(img)
+
+    # Gold left rail
+    rail = max(8, int(height * 0.025))
+    draw.rectangle([(0, 0), (rail, height)], fill=GOLD)
+
+    # Soft orange bleed, left edge (subtle warmth under the button area)
+    bleed_w = int(width * 0.18)
+    for i in range(bleed_w):
+        x = rail + i
+        alpha = 1 - (i / bleed_w)
+        c = tuple(int(DARK[k] + (ORANGE[k] - DARK[k]) * alpha * 0.12) for k in range(3))
+        draw.line([(x, 0), (x, height)], fill=c)
+
+    # Soft gold bleed, right edge (subtle warmth)
+    bleed_w = int(width * 0.18)
+    for i in range(bleed_w):
+        x = width - i - 1
+        alpha = 1 - (i / bleed_w)
+        c = tuple(int(DARK[k] + (GOLD[k] - DARK[k]) * alpha * 0.08) for k in range(3))
+        draw.line([(x, 0), (x, height)], fill=c)
+
+    # Dot grid texture, very faint, spread across the whole canvas
+    dot_color = (45, 45, 45)
+    dot_spacing = max(32, int(height * 0.09))
+    dot_size = max(3, int(height * 0.01))
+    for y in range(int(height * 0.1), int(height * 0.9), dot_spacing):
+        for x in range(int(width * 0.05), int(width * 0.95), dot_spacing):
+            draw.ellipse([(x, y), (x + dot_size, y + dot_size)], fill=dot_color)
+
+    # Faint SW monogram in the far right corner, low contrast
+    box = int(height * 0.55)
+    bx = width - box - int(width * 0.04)
+    by = int((height - box) / 2)
+    faint_gold = tuple(int(DARK[k] + (GOLD[k] - DARK[k]) * 0.18) for k in range(3))
+    draw.rectangle(
+        [(bx, by), (bx + box, by + box)],
+        outline=faint_gold,
+        width=max(3, int(box * 0.025)),
+    )
+    f_mono = font("black", int(box * 0.55))
+    mono = "SW"
+    mb = draw.textbbox((0, 0), mono, font=f_mono)
+    mw, mh = mb[2] - mb[0], mb[3] - mb[1]
+    draw.text(
+        (bx + (box - mw) / 2 - mb[0], by + (box - mh) / 2 - mb[1]),
+        mono,
+        font=f_mono,
+        fill=faint_gold,
+    )
+
+    img.save(out_path, "PNG")
+    print(f"  ✓ {out_path.name}")
+
+
 def main():
     print("Rendering Module 01 covers...")
     render(1280, 720, OUT / "module-01-cover-1280x720.png")
     render(1080, 1080, OUT / "module-01-cover-1080x1080.png")
     render(1920, 1080, OUT / "module-01-cover-1920x1080.png")
 
-    print("Rendering GHL banner images...")
+    print("Rendering GHL header banners (with branding)...")
     render_banner(1584, 396, OUT / "ghl-header-1584x396.png")
     render_banner(1920, 480, OUT / "ghl-header-1920x480.png")
-    render_banner(2560, 640, OUT / "ghl-hero-2560x640.png")
+
+    print("Rendering GHL hero backdrops (no text, for title overlay)...")
+    render_hero_backdrop(1920, 600, OUT / "ghl-hero-backdrop-1920x600.png")
+    render_hero_backdrop(2560, 800, OUT / "ghl-hero-backdrop-2560x800.png")
+    render_hero_backdrop(1584, 500, OUT / "ghl-hero-backdrop-1584x500.png")
     print("Done.")
 
 
