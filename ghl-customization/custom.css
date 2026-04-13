@@ -10,21 +10,77 @@
    - Broader selector coverage across GHL course DOM variants.
    ============================================================ */
 
-/* ---------- Base canvas ---------- */
+/* ---------- Base canvas (nuclear option) ---------- */
+html,
 html body,
+html body main,
+html body section,
+html body article,
+html body .container,
+html body .container-fluid,
+html body .main-content,
+html body .content-wrapper,
+html body .page-wrapper,
+html body .page-content,
 html body .hl_courses,
 html body .hl-courses,
 html body .course-content,
 html body .lesson-content,
+html body .course-wrapper,
+html body .lesson-wrapper,
+html body .course-player,
+html body .lesson-player,
+html body .course-container,
+html body .lesson-container,
+html body .course-main,
+html body .lesson-main,
+html body .lesson-main-content,
+html body .about-lesson,
+html body .lesson-about,
+html body .instructor,
+html body .instructor-section,
 html body .client-portal,
 html body .client-portal-body,
 html body [class*="course-player"],
 html body [class*="courseView"],
-html body [class*="lessonView"] {
+html body [class*="lessonView"],
+html body [class*="lesson-view"],
+html body [class*="course-view"],
+html body [class*="LessonPage"],
+html body [class*="CoursePage"],
+html body [class*="lesson-page"],
+html body [class*="course-page"],
+html body [class*="main-content"],
+html body [class*="content-area"],
+html body [class*="course-body"],
+html body [class*="lesson-body"] {
   background: #1A1A1A !important;
+  background-color: #1A1A1A !important;
   color: #FFFFFF !important;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
+}
+
+/* Kill any inline white backgrounds */
+html body [style*="background: white"],
+html body [style*="background: #fff"],
+html body [style*="background: #ffffff"],
+html body [style*="background-color: white"],
+html body [style*="background-color: #fff"],
+html body [style*="background-color: #ffffff"],
+html body [style*="background:white"],
+html body [style*="background:#fff"],
+html body [style*="background:#ffffff"] {
+  background: #1A1A1A !important;
+  background-color: #1A1A1A !important;
+}
+
+/* Force all descendant divs under the lesson view to inherit dark bg */
+html body [class*="lesson"] > div,
+html body [class*="course"] > div,
+html body main > div,
+html body main > section {
+  background-color: transparent !important;
 }
 
 /* ---------- Headings ---------- */
