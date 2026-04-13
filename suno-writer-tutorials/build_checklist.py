@@ -137,6 +137,10 @@ def render_lesson(lesson):
       </div>
       <div style="display:flex;gap:16px;align-items:center;">
         <span class="duration">{html.escape(lesson["length"])}</span>
+        <span class="lesson-status" data-lesson-status="L{lesson["num"]}">
+          <span class="lesson-status-text">0 / {total}</span>
+          <span class="lesson-status-bar"><span class="lesson-status-fill"></span></span>
+        </span>
         <span class="toggle">▼</span>
       </div>
     </div>
@@ -226,11 +230,23 @@ HTML_TEMPLATE = """<!doctype html>
       document.getElementById('progressBar').style.width = total ? (done / total * 100) + '%' : '0%';
       document.getElementById('progressText').textContent = done + ' / ' + total;
 
-      // Mark lesson cards as done if all subtasks complete
+      // Per-lesson progress + done state
       document.querySelectorAll('.lesson').forEach(lesson => {{
         const boxes = lesson.querySelectorAll('input[type="checkbox"]');
-        const allChecked = boxes.length > 0 && Array.from(boxes).every(b => b.checked);
+        const lDone = Array.from(boxes).filter(b => b.checked).length;
+        const lTotal = boxes.length;
+        const allChecked = lTotal > 0 && lDone === lTotal;
         lesson.classList.toggle('done', allChecked);
+
+        const statusEl = lesson.querySelector('.lesson-status');
+        if (statusEl && lTotal > 0) {{
+          const txt = statusEl.querySelector('.lesson-status-text');
+          const fill = statusEl.querySelector('.lesson-status-fill');
+          txt.textContent = allChecked ? '✓ Done' : (lDone + ' / ' + lTotal);
+          fill.style.width = (lDone / lTotal * 100) + '%';
+          statusEl.classList.toggle('complete', allChecked);
+          statusEl.classList.toggle('in-progress', lDone > 0 && !allChecked);
+        }}
       }});
     }}
 

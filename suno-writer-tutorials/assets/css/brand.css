@@ -187,6 +187,42 @@ header.site-header {
 }
 .lesson.open .lesson-header .toggle { transform: rotate(180deg); }
 
+/* Per-lesson progress indicator */
+.lesson-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 70px;
+}
+.lesson-status-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.lesson-status-bar {
+  width: 70px;
+  height: 5px;
+  background: var(--dark-3);
+  display: block;
+  overflow: hidden;
+}
+.lesson-status-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.lesson-status.in-progress .lesson-status-text { color: var(--gold); }
+.lesson-status.complete .lesson-status-text { color: var(--green); }
+.lesson-status.complete .lesson-status-fill { background: var(--green); }
+.lesson.done .lesson-header h2 {
+  color: var(--green);
+  opacity: 0.85;
+}
+
 .lesson-body {
   display: none;
   padding: 0 24px 24px;
@@ -469,4 +505,6 @@ footer.site-footer {
   .lesson-header h2 { font-size: 15px; }
   .progress { display: none; }
   .code-block { font-size: 12px; padding: 14px; }
+  .lesson-status-bar { width: 50px; }
+  .lesson-status { min-width: 50px; }
 }
